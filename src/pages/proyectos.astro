@@ -1,0 +1,39 @@
+---
+import '../styles/global.css';
+
+const proyectos = [
+  {
+    nombre: "Proyecto 1",
+    descripcion: "Una web para practicas"
+  },
+  {
+    nombre: "Proyecto 2",
+    descripcion: "Una API"
+  },
+  {
+    nombre: "Proyecto 3",
+    descripcion: "Tienda online carniceria"
+  }
+];
+---
+
+<nav>
+  <a href="/">Inicio</a>
+  <a href="/proyectos">Proyectos</a>
+  <a href="/sobre-mi">Sobre mi</a>
+</nav>
+
+<div class="container">
+  <h1>Practicas Codenode</h1>
+
+  <ul>
+    {proyectos.map((proyecto) => (
+      <li class="card">
+        <h2>{proyecto.nombre}</h2>
+        <p>{proyecto.descripcion}</p>
+      </li>
+    ))}
+  </ul>
+
+  <a href="/">Volver al inicio</a>
+</div>
