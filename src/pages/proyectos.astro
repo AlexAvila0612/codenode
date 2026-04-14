@@ -1,39 +1,49 @@
 ---
 import '../styles/global.css';
 
+import proyecto1 from '../assets/proyecto1.png';
+import proyecto2 from '../assets/proyecto2.png';
+import proyecto3 from '../assets/proyecto3.png';
+
 const proyectos = [
   {
     nombre: "Proyecto 1",
-    descripcion: "Una web para practicas"
+    descripcion: "Una web para practicas",
+    imagen: proyecto1
   },
   {
     nombre: "Proyecto 2",
-    descripcion: "Una API"
+    descripcion: "Una API",
+    imagen: proyecto2
   },
   {
     nombre: "Proyecto 3",
-    descripcion: "Tienda online carniceria"
+    descripcion: "Tienda online carniceria",
+    imagen: proyecto3
   }
 ];
 ---
 
-<nav>
-  <a href="/">Inicio</a>
-  <a href="/proyectos">Proyectos</a>
-  <a href="/sobre-mi">Sobre mi</a>
-</nav>
-
 <div class="container">
-  <h1>Practicas Codenode</h1>
 
-  <ul>
-    {proyectos.map((proyecto) => (
-      <li class="card">
-        <h2>{proyecto.nombre}</h2>
-        <p>{proyecto.descripcion}</p>
-      </li>
-    ))}
-  </ul>
+<h1>Practicas Codenode</h1>
 
-  <a href="/">Volver al inicio</a>
+{proyectos.map((proyecto) => (
+
+<div class="card">
+
+<img 
+src={proyecto.imagen.src} 
+alt={proyecto.nombre}
+class="imagen-proyecto"
+/>
+
+<h2>{proyecto.nombre}</h2>
+
+<p>{proyecto.descripcion}</p>
+
+</div>
+
+))}
+
 </div>
