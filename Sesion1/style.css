@@ -1,0 +1,14 @@
+body {
+  line-height: 1.6; /* Mejora la legibilidad */
+  font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  color: #242323;
+  background-color: oklch(83.239% 0.09546 206.552);
+ text-align: center;
+  padding: 20px;
+}
+
+div {
+  margin-bottom: 15px;
+  f
+  
+}
