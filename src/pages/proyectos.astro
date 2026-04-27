@@ -1,46 +1,48 @@
 ---
+
 import '../styles/global.css';
 
-import proyecto1 from '../assets/proyecto1.png';
-import proyecto2 from '../assets/proyecto2.png';
-import proyecto3 from '../assets/proyecto3.png';
+let proyectos = [];
+let error = false;
 
-const proyectos = [
-  {
-    nombre: "Proyecto 1",
-    descripcion: "Una web para practicas",
-    imagen: proyecto1
-  },
-  {
-    nombre: "Proyecto 2",
-    descripcion: "Una API",
-    imagen: proyecto2
-  },
-  {
-    nombre: "Proyecto 3",
-    descripcion: "Tienda online carniceria",
-    imagen: proyecto3
-  }
-];
+try {
+  const res = await fetch('http://localhost/Wordpress/wp-json/wp/v2/posts?_embed');
+
+  if (!res.ok) throw new Error('Error en la API');
+
+  proyectos = await res.json();
+} catch (e) {
+  console.error(e);
+  error = true;
+}
 ---
 
 <div class="container">
 
 <h1>Practicas Codenode</h1>
 
-{proyectos.map((proyecto) => (
+{error && <p>No se pudieron cargar los proyectos</p>}
+
+{!error && proyectos.length === 0 && (
+  <p>No hay proyectos disponibles</p>
+)}
+
+{!error && proyectos.map((proyecto) => (
 
 <div class="card">
+{proyecto._embedded?.['wp:featuredmedia']?.[0]?.source_url && (
+  <img 
+    src={proyecto._embedded['wp:featuredmedia'][0].source_url} 
+    class="imagen-proyecto"
+  />
+)}
+<h2 set:html={proyecto.title.rendered}></h2>
 
-<img 
-src={proyecto.imagen.src} 
-alt={proyecto.nombre}
-class="imagen-proyecto"
-/>
+<p set:html={proyecto.content.rendered}></p>
 
-<h2>{proyecto.nombre}</h2>
-
-<p>{proyecto.descripcion}</p>
+<a href={`/proyectos/${proyecto.slug}`}>
+Ver mas
+</a>
 
 </div>
 
